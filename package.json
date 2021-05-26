@@ -6,7 +6,7 @@
   "bin": {
     "import-cli": "./bin/run"
   },
-  "bugs": "https://github.com/import-cli/import-cli/issues",
+  "bugs": "https://github.com/alexanderkjeldaas/ch-import-cli/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -37,7 +37,7 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/import-cli/import-cli",
+  "homepage": "https://github.com/alexanderkjeldaas/ch-import-cli",
   "keywords": [
     "oclif"
   ],
@@ -46,7 +46,7 @@
   "oclif": {
     "bin": "import-cli"
   },
-  "repository": "import-cli/import-cli",
+  "repository": "alexanderkjeldaas/ch-import-cli",
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",

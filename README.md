@@ -1,6 +1,32 @@
 import-cli
 ==========
 
+Prepare your CLI too
+
+```
+$ npm install
+```
+
+Parse a boka.se export into JSON
+
+```
+$ ./bin/run --parseBokaSePdf ./Boka.se.pdf
+```
+
+You will have to edit the resulting JSON file by hand.  In general, the PDF-to-text system is inconsistent around the top and bottom of pages, so depending on where page splits occur, the last entry on a page and the first entry on the next page might be parsed incorrectly.
+
+
+Debug failed parsing
+```
+$ ./bin/run --dumpPdf ./Boka.se.pdf
+```
+
+Create list of product names
+```
+$ ./bin/run --parseBokaSePdf ./Boka.se.pdf|  jq '.bookings[] | .product' | sort -u | sort
+```
+
+
 Import CLI tool
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
