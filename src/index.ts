@@ -1,4 +1,5 @@
-import {Command, flags} from '@oclif/command'
+import { Command, flags } from '@oclif/command'
+import { parseBokaSePdf, parsePdf } from './parseBokaSePdf'
 
 class ImportCli extends Command {
   static description = 'describe the command here'
@@ -7,10 +8,8 @@ class ImportCli extends Command {
     // add --version flag to show CLI version
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    dumpPdf: flags.boolean({char:'d', description: 'dump PDF output as text'}),
+    parseBokaSePdf: flags.boolean({char:'p', description: 'process file as boka.se PDF output'}),
   }
 
   static args = [{name: 'file'}]
@@ -18,10 +17,12 @@ class ImportCli extends Command {
   async run() {
     const {args, flags} = this.parse(ImportCli)
 
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    if (flags.dumpPdf) {
+      const data = await parsePdf(args.file);
+      this.log(JSON.stringify(data, null, 2));
+    } else if (flags.parseBokaSePdf) {
+      const data = await parseBokaSePdf(args.file);
+      this.log(JSON.stringify(data, null, 2));
     }
   }
 }
